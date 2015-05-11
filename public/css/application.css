@@ -52,6 +52,17 @@ html {
   margin: auto;
 }
 
+#map1 {
+  width: 80%;
+  margin: auto;
+}
+
+#results {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
 
 
 /* Prevent the text contents of draggable elements from being selectable. */
