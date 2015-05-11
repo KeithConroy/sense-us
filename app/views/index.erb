@@ -1,0 +1,75 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" src="/images/gopher-small.png">
+      </a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Gopher Notes
+        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <form action="/session" method="post" id="login_form" class="navbar-form navbar-right" >
+        <div class="form-group">
+          <input type="text" class="form-control" name="user_name" placeholder="User Name">
+          <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-success">Log In</button>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<% if @login_error %>
+  <div class="login_error alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <%= @login_error %>
+  </div>
+<% end %>
+
+<div id="welcome">
+  <h1>Welcome to Sense Us</h1>
+</div>
+
+<div id="sign-up" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Create an account</h3>
+  </div>
+
+  <div class="panel-body">
+    <% if @signup_errors %>
+      <% @signup_errors.each do |message| %>
+        <div class="alert alert-danger" role="alert">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if @new_user %>
+        <div class="alert alert-success" role="alert">
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+          Thanks for signing up <em><%= @new_user %></em>, please log in.
+        </div>
+    <% end %>
+
+    <form action="/users" method="post">
+      <div id="sign_up_form" class="form-group">
+        <input type="text" class="form-control" name="user_name" placeholder="User Name">
+        <input type="password" class="form-control" name="password" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-success">Sign Up</button>
+    </form>
+
+  </div>
+</div>
+

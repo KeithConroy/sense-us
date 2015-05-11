@@ -1,0 +1,60 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" src="">
+      </a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Sense Us
+        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav navbar-right">
+        <li></li>
+        <li><a href="/logout">Log Out</a></li>
+      </ul>
+      <p class="navbar-text navbar-right">
+        Signed in as <%= current_user.user_name %>
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+      </p>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<div id="todo">
+  <div class="toolbox">
+    <div class="input-group add_todo_form">
+      <input type="text" class="form-control" name="todo" placeholder="New todo item...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Add Note</button>
+      </span>
+    </div>
+  </div>
+
+
+</div>
+<select>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+
+<div id="map">
+  <iframe src="http://createaclickablemap.com/map.php?&id=35781&online=true" width="900" height="525" style="border: none;"></iframe>
+</div>
+
+<script>
+
+</script>
