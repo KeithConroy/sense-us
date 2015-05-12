@@ -63,6 +63,26 @@ html {
   text-align: center;
 }
 
+/*#api_selector {
+  display: none;
+}*/
+
+#state_selector {
+  display: none;
+}
+
+#year_selector {
+  display: none;
+}
+
+#date_selector {
+  display: none;
+}
+
+#checkbox {
+  display: none;
+}
+
 
 
 /* Prevent the text contents of draggable elements from being selectable. */
