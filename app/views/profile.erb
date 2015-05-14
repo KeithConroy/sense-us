@@ -2,8 +2,8 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        <img alt="Brand" src="">
+      <a class="navbar-brand" href="/tweets">
+        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
       </a>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -11,7 +11,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Sense Us</a>
+      <a class="navbar-brand" href="/tweets">Sense Us</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -29,39 +29,51 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<button id="toggle"class="btn btn-default">Switch to Projections</button>
 
-<div id="todo">
-  <div class="toolbox">
-    <div class="input-group add_todo_form">
-      <input type="text" class="form-control" name="todo" placeholder="New todo item...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Add Note</button>
-      </span>
+<div id="estimates">
+  <div id="toolbar1" class="panel panel-default">
+    <!-- <div class="panel-heading">
+      <h3 class="panel-title">Options</h3>
+    </div> -->
+    <div class="panel-body">
+    <%= erb :_date_dropdown %>
+    <form id="checkbox">
+      <input type="checkbox" id="population" value="POP"> Population
+      <input type="checkbox" id="births" value="BIRTHS"> Births
+      <input type="checkbox" id="deaths" value="DEATHS"> Deaths
+    </form>
+
+
     </div>
+  </div>
+
+  <div id="results" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Results</h3>
+    </div>
+    <div class="panel-body">
+      <p></p>
+    </div>
+  </div>
+
+  <div id="vmap"></div>
+
+</div>
+
+<div id="projections" class="hidden">
+  <div id="toolbar2" class="panel panel-default">
+    <div class="panel-body">
+
+    <%= erb :_year_dropdown %>
+    <%= erb :_params_dropdown %>
+      <button id="get_results" class="btn btn-default">Get Results</button>
+    </div>
+  </div>
+
+  <div id="graph">
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
   </div>
 </div>
 
-<div id="results">
-
-
-  <%= erb :_api_dropdown %>
-  <%= erb :_state_dropdown %>
-  <%= erb :_year_dropdown %>
-  <%= erb :_date_dropdown %>
-
-  <form id="checkbox">
-    <input type="checkbox" id="population" value="POP"> Population<br>
-    <input type="checkbox" id="births" value="BIRTHS"> Births<br>
-    <input type="checkbox" id="deaths" value="DEATHS"> Deaths<br>
-  </form>
-
-  <h3>State population</h3>
-  <p></p>
-</div>
-
-<div id="vmap" style="width: 600px; height: 400px;"></div>
-
-<!-- <div id="map1">
-  <iframe src="http://createaclickablemap.com/map.php?&id=35781&online=true" width="900" height="525" style="border: none;"></iframe>
-</div> -->
-
+<img id="awesome" alt="ship" src="/images/Pirate_Ship.png">

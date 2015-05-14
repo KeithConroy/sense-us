@@ -4,25 +4,36 @@
   border-radius: 0;
 }
 
+.navbar.navbar-default {
+  width: 60%;
+  margin: auto;
+}
+
 .navbar-brand {
   font-family: 'Permanent Marker', cursive;
+  font-size: 2em;
 }
 
 #login_error {
   width: 50%;
 }
 
-#welcome h1{
+#welcome p {
   text-align: center;
   font-family: 'Permanent Marker', cursive;
-  font-size: 5em;
   color: white;
+  font-size: 2em;
 }
 
-.navbar-brand img{
-  position: relative;
-  top: -60%;
-  max-height: 225%;
+#welcome h1 {
+  text-align: center;
+  font-family: 'Permanent Marker', cursive;
+  color: white;
+  font-size: 5em;
+}
+
+#sub_options {
+  margin: auto;
 }
 
 #sign-up {
@@ -37,14 +48,47 @@
   margin: auto;
 }
 
-body {
-  background-image: url('/images/wood.jpg');
+/*body {
+  background-image: url('/images/blue2.jpg');
+  top: 0;
+  left: 0;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 html {
   height: 100%;
+}*/
+#toggle {
+  float: right;
+  margin-top: 50px;
+  margin-right: 5%;
+}
+
+#estimates {
+  left: 0;
+}
+
+#projections {
+  left: 0;
+}
+
+#graph {
+  width: 60%;
+  margin: auto;
+  margin-top: 5%;
+}
+
+body {
+  background: none;
+}
+
+.full {
+  background: url('/images/blue2.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .input-group {
@@ -52,47 +96,55 @@ html {
   margin: auto;
 }
 
-#map1 {
-  width: 80%;
+#toolbar1 {
+  width: 50%;
   margin: auto;
+  text-align: center;
+  margin-top: 30px;
+}
+
+#toolbar2 {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  margin-top: 30px;
+}
+
+#vmap {
+  position: absolute;
+  width: 900px;
+  height: 500px;
+  margin-left: 5%;
+  margin-bottom: auto;
+  margin-top: 3%;
+}
+
+#hidden {
+  display: none;
 }
 
 #results {
-  width: 80%;
+  position: absolute;
+  height: 300px;
+  width: 25%;
+  margin-top: 5%;
+  top: 30%;
+  left: 70%;
+  text-align: center;
+  z-index: 1;
+}
+
+#twitter {
+  width: 50%;
   margin: auto;
+  margin-top: 5%;
   text-align: center;
 }
 
-/*#api_selector {
-  display: none;
-}*/
-
-#state_selector {
-  display: none;
-}
-
-#year_selector {
-  display: none;
-}
-
-#date_selector {
-  display: none;
-}
-
-#checkbox {
-  display: none;
-}
-
-
-
-/* Prevent the text contents of draggable elements from being selectable. */
-[draggable] {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  /* Required to make elements draggable in old WebKit */
-  -khtml-user-drag: element;
-  -webkit-user-drag: element;
+#awesome {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  max-width: 20%;
 }
 

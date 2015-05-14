@@ -14,7 +14,7 @@
   var apiParams = {
     colors: 1,
     values: 1,
-    backgroundColor: 1,
+    // backgroundColor: 1,
     scaleColors: 1,
     normalizeFunction: 1,
     enableZoom: 1,
@@ -39,7 +39,7 @@
 
     var defaultParams = {
       map: 'world_en',
-      backgroundColor: '#a5bfdd',
+      // backgroundColor: '#a5bfdd',
       color: '#f4f3f0',
       hoverColor: '#FCA128',
       selectedColor: '#FCA128',
@@ -373,7 +373,7 @@
     this.selectedColor = params.selectedColor;
     this.hoverColor = params.hoverColor;
     this.hoverOpacity = params.hoverOpacity;
-    this.setBackgroundColor(params.backgroundColor);
+    // this.setBackgroundColor(params.backgroundColor);
 
     this.width = params.container.width();
     this.height = params.container.height();
@@ -598,9 +598,9 @@
       this.values = values;
     },
 
-    setBackgroundColor: function (backgroundColor) {
-      this.container.css('background-color', backgroundColor);
-    },
+    // setBackgroundColor: function (backgroundColor) {
+      // this.container.css('background-color', backgroundColor);
+    // },
 
     setScaleColors: function (colors) {
       this.colorScale.setColors(colors);
