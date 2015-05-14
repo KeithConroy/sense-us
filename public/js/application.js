@@ -1,49 +1,88 @@
 $(document).ready(function() {
   bindEvents();
-  map();
-  populateChart();
+  generateMap();
+  prepareChart();
 });
-
-
 
 function bindEvents() {
   $('#toggle').on("click", toggleView);
-  // $('#toggle2').on("click", toggleView);
-  $('#get_results').on("click", api_projections_call)
+  $('#get_results').on("click", apiProjectionsCall);
 }
-
-
 
 function toggleView() {
   $('#estimates').toggleClass('hidden');
   $('#projections').toggleClass('hidden');
+
   $(this).toggleClass('btn-success');
   $(this).text(function(i, text){
     return text === "Switch to Projections" ? "Switch to Estimates" : "Switch to Projections";
   })
 }
 
-function api_estimates_call(state) {
-  var key = 'ba3c17760fce3eadb5c8e2571e95501fe806697e';
-  var options = check_options();
-  var date = check_date();
+// API calls
 
-  $.ajax({
-    url: 'http://api.census.gov/data/2013/pep/natstprc?get='+options+'&for=state:'+state+'&DATE='+date+'&key='+key,
-    type: 'GET',
-    success: function(stateInfo) {
-      $('#results p').remove();
-      for (i = 0; i < (stateInfo[0].length - 2); i++) {
-        if(stateInfo[0][i] === 'STNAME')
-          $('#results').append('<h3>'+stateInfo[1][i]+'</h3>');
-        else
-          $('#results').append('<p>'+stateInfo[0][i]+' '+stateInfo[1][i]+'</p>');
-      }
-    }
-  });
+function key(){
+  return 'ba3c17760fce3eadb5c8e2571e95501fe806697e';
 }
 
-function check_options() {
+function apiEstimatesCall(state) {
+  var options = checkOptions();
+  var date = checkDate();
+
+  if (options.length <= 6 || date === '0'){
+    $('#results').append('<h3 style="color: red;">Please make your selections above</h3>');
+  }
+  else{
+    $.ajax({
+      url: 'http://api.census.gov/data/2013/pep/natstprc?get='+options+'&for=state:'+state+'&DATE='+date+'&key='+key(),
+      type: 'GET',
+      success: function(stateInfo) {
+        for (i = 0; i < (stateInfo[0].length - 2); i++) {
+          if(stateInfo[0][i] === 'STNAME')
+            $('#results').append('<h3>'+stateInfo[1][i]+'</h3>');
+          else
+            $('#results').append('<p>'+stateInfo[0][i]+' '+stateInfo[1][i]+'</p>');
+        }
+      }
+    });
+  }
+}
+
+function apiProjectionsCall() {
+  var year = checkYear();
+  var url = findApi();
+
+  if(year === '0' || url === '0'){
+
+  }
+  else {
+    $.ajax({
+      url: url+year+'&key='+key(),
+      type: 'GET',
+      success: function(stateInfo){
+        var headers = stateInfo.shift();
+        var chartData = calculatePercentages(stateInfo);
+        $('#chart').fadeIn();
+        renderChart(checkParams(), year, chartData);
+      }
+    });
+  }
+};
+
+// API Helpers
+
+function findApi() {
+  if (checkParams() === 'births')
+    return 'http://api.census.gov/data/2012/popproj/deaths?get=TOTAL_DEATHS,RACE_HISP&SEX=0&YEAR=';
+  else if (checkParams() === 'deaths')
+    return 'http://api.census.gov/data/2012/popproj/pop?get=TOTAL_POP,RACE&SEX=0&YEAR=';
+  else if (checkParams() === 'pop')
+    return 'http://api.census.gov/data/2012/popproj/births?get=BIRTHS,RACE_HISP&SEX=0&YEAR=';
+  else
+    return '0';
+};
+
+function checkOptions() {
   var options = ["STNAME"]
   if ($('#population').prop('checked'))
     options.push("POP");
@@ -54,46 +93,37 @@ function check_options() {
   return options.join(',')
 }
 
-function check_date() {
+function checkDate() {
   return $("#date_selector").find(':selected').val();
 }
 
-
-//////////////////
-
-function find_api() {
-  if (check_params() === 'births')
-    return 'http://api.census.gov/data/2012/popproj/deaths?get=TOTAL_DEATHS,RACE_HISP&SEX=0&YEAR=';
-  else if (check_params() === 'deaths')
-    return 'http://api.census.gov/data/2012/popproj/pop?get=TOTAL_POP,RACE&SEX=0&YEAR=';
-  else if (check_params() === 'pop')
-    return 'http://api.census.gov/data/2012/popproj/births?get=BIRTHS,RACE_HISP&SEX=0&YEAR=';
-};
-
-function api_projections_call() {
-  var key = 'ba3c17760fce3eadb5c8e2571e95501fe806697e';
-  var year = check_year();
-  var url = find_api();
-
-  $.ajax({
-    url: url+year+'&key='+key,
-    type: 'GET',
-    success: function(stateInfo){
-      $('#projResults p').remove();
-      var headers = stateInfo.shift();
-      var chartData = calculatePercentages(stateInfo);
-      renderChart(check_params(), year, chartData);
-    }
-  });
-};
-
-function check_year() {
+function checkYear() {
   return $("#year_selector").find(':selected').val();
 };
 
-function check_params() {
+function checkParams() {
   return $("#params_selector").find(':selected').val();
 };
+
+// Display Helpers
+
+function calculatePercentages(data){
+  var total = data[0][0];
+
+  var whitePct = data[1][0] / total;
+  var blackPct = data[2][0] / total;
+  var aianPct = data[3][0] / total;
+  var asianPct = data[4][0] / total;
+  var nhpiPct = data[5][0] / total;
+
+  return [
+    ['White', whitePct],
+    ['Black', blackPct],
+    ['American Indian', aianPct],
+    ['Asian', asianPct],
+    ['Pacific Islander', nhpiPct],
+  ]
+}
 
 var codes = {
   "AL": "01",
@@ -149,154 +179,26 @@ var codes = {
   "WY": "56",
 }
 
-
-function map() {
-  jQuery('#vmap').vectorMap(
-  {
-    map: 'usa_en',
-    borderColor: '#818181',
-    borderOpacity: 0.25,
-    borderWidth: 1,
-    color: '#BBFFA2',
-    enableZoom: false,
-    hoverColor: '#BBFFA2',
-    hoverOpacity: null,
-    normalizeFunction: 'linear',
-    scaleColors: ['#b6d6ff', '#005ace'],
-    selectedColor: '#FCA128',
-    selectedRegion: null,
-    showTooltip: true,
-    onRegionClick: function(element, abbrv, region)
-    {
-      if(abbrv === 'ia'){
-        getAwesome();
-      }
-      else {
-        var state_code = codes[abbrv.toUpperCase()];
-        api_estimates_call(state_code);
-      }
-    }
-  });
-}
-
-function calculatePercentages(data){
-  var total = data[0][0];
-
-  var whitePct = data[1][0] / total;
-  var blackPct = data[2][0] / total;
-  var aianPct = data[3][0] / total;
-  var asianPct = data[4][0] / total;
-  var nhpiPct = data[5][0] / total;
-
-  return [
-    ['White', whitePct],
-    ['Black', blackPct],
-    ['American Indian', aianPct],
-    ['Asian', asianPct],
-    ['Pacific Islander', nhpiPct],
-  ]
-}
-
-function populateChart() {
-
-    // Radialize the colors
-    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
-        return {
-            radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
-            stops: [
-                [0, color],
-                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-            ]
-        };
-    });
-
-    // Build the chart
-    $('#container').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: 'Projected [params] by race, [year]'
-            // text: 'Browser market shares at a specific website, 2014'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: false
-                },
-                showInLegend: true
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'name',
-            data:
-            [
-                ['White',   20],
-                ['Native American',       20],
-                {
-                    name: 'Black',
-                    y: 20,
-                    sliced: true,
-                    selected: true
-                },
-                ['Asian',    20],
-                ['Pacific Islander',     20],
-            ]
-        }]
-    });
-
-};
-
-function renderChart(params, year, chartData) {
-
-
-    // Build the chart
-    $('#container').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: 'Projected '+params+' by race, '+year
-            // text: 'Browser market shares at a specific website, 2014'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: false
-                },
-                showInLegend: true
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'name',
-            data: chartData
-        }]
-    });
-
-};
-
+// Nonsense
 
 function getAwesome(){
-  console.log('awesome')
+  armLaser();
+
   $('#results').animate({left: '100%'}, 1000);
   $('#vmap').animate({left: '-100%'}, 1000);
-  setTimeout(function(){ $('#toolbar1').fadeOut(); }, 200);
+
+  setTimeout(function(){ $('#toolbar').fadeOut(); }, 200);
   setTimeout(function(){ $('#toggle').fadeOut(); }, 200);
-  $('#awesome').animate({left: '30%'}, 4000)
+
+  $('#awesome').animate({left: '30%'}, 6000)
+}
+
+function armLaser(){
+  $(document).on('keydown', function(event) {
+    if(event.keyCode === 76) { //L
+      var laser = new Audio("/sounds/laser.wav");
+      laser.play();
+      $('.laser').animate({left: '-30%'}, 100);
+    }
+  });
 }

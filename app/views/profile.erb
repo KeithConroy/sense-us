@@ -1,59 +1,45 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="/tweets">
+      <a class="navbar-brand" href="/social">
         <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
       </a>
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/tweets">Sense Us</a>
+      <a class="navbar-brand" href="/social">Sense Us</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-      <ul class="nav navbar-nav navbar-right">
-        <li></li>
-        <li><a href="/logout">Log Out</a></li>
-      </ul>
-      <p class="navbar-text navbar-right">
-        Signed in as <%= current_user.user_name %>
-        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-      </p>
-    </div><!-- /.navbar-collapse -->
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout">Log Out</a></li>
+    </ul>
+    <p class="navbar-text navbar-right">
+      Signed in as <%= current_user.user_name %>
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+    </p>
   </div><!-- /.container-fluid -->
 </nav>
 
 <button id="toggle"class="btn btn-default">Switch to Projections</button>
 
+<!-- Estimates Page -->
+
 <div id="estimates">
-  <div id="toolbar1" class="panel panel-default">
-    <!-- <div class="panel-heading">
-      <h3 class="panel-title">Options</h3>
-    </div> -->
+  <div id="toolbar" class="toolbar panel panel-default">
     <div class="panel-body">
-    <%= erb :_date_dropdown %>
-    <form id="checkbox">
-      <input type="checkbox" id="population" value="POP"> Population
-      <input type="checkbox" id="births" value="BIRTHS"> Births
-      <input type="checkbox" id="deaths" value="DEATHS"> Deaths
-    </form>
-
-
+      <%= erb :"/partials/_date_dropdown" %>
+      <form id="checkbox">
+        <input type="checkbox" id="population" value="POP"> Population
+        <input type="checkbox" id="births" value="BIRTHS"> Births
+        <input type="checkbox" id="deaths" value="DEATHS"> Deaths
+      </form>
     </div>
   </div>
 
   <div id="results" class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Results</h3>
+      <h2 class="panel-title">Results</h2>
     </div>
     <div class="panel-body">
       <p></p>
+      <button id="save"class="btn btn-default">Save Results</button>
     </div>
   </div>
 
@@ -61,19 +47,23 @@
 
 </div>
 
-<div id="projections" class="hidden">
-  <div id="toolbar2" class="panel panel-default">
-    <div class="panel-body">
+<!-- Projections Page -->
 
-    <%= erb :_year_dropdown %>
-    <%= erb :_params_dropdown %>
+<div id="projections" class="hidden">
+  <div class="toolbar panel panel-default">
+    <div class="panel-body">
+      <%= erb :"/partials/_year_dropdown" %>
+      <%= erb :"/partials/_params_dropdown" %>
       <button id="get_results" class="btn btn-default">Get Results</button>
     </div>
   </div>
 
-  <div id="graph">
+  <div id="chart">
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
   </div>
 </div>
 
-<img id="awesome" alt="ship" src="/images/Pirate_Ship.png">
+<!-- Nonsense Page -->
+
+<img id="awesome" alt="ship" src="/images/ship_with_pirate.png">
+<!-- <img class="laser" alt="laser" src="/images/red_laser.png"> -->

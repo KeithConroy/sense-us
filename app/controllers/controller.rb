@@ -1,3 +1,3 @@
-get '/tweets' do
-  erb :tweets
+get '/social' do
+  erb :social
 end
