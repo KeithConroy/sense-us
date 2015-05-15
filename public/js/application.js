@@ -247,24 +247,37 @@ var codes = {
 
 // Nonsense
 
+var lowRider = new Audio("/sounds/low-rider.wav");
+var laser = new Audio("/sounds/laser.wav");
+
 function getAwesome(){
+  lowRider.play();
+  $('#awesome').show();
   armLaser();
 
-  $('#results').animate({left: '100%'}, 1000);
-  $('#vmap').animate({left: '-100%'}, 1000);
+  $('#results').animate({left: '200%'}, 1000);
+  $('#vmap').animate({left: '-200%'}, 1000);
 
   setTimeout(function(){ $('#toolbar').fadeOut(); }, 200);
   setTimeout(function(){ $('#toggle').fadeOut(); }, 200);
 
-  $('#awesome').animate({left: '30%'}, 6000)
+  $('#awesome').animate({left: '30%'}, 12000)
 }
 
 function armLaser(){
   $(document).on('keydown', function(event) {
-    if(event.keyCode === 76) { //L
-      var laser = new Audio("/sounds/laser.wav");
+    console.log(event.keyCode);
+    if(event.keyCode === 76) { // L
       laser.play();
-      $('.laser').animate({left: '-30%'}, 100);
+
+      $('body').append('<img class="laser" alt="laser" src="/images/red_laser.png">');
+
+      // $('.laser').show();
+      $('.laser').animate({left: '-100%'}, 200);
+      setTimeout(function(){ $('.laser').remove(); }, 1000);
+    }
+    if(event.keyCode === 83) { // S
+      lowRider.src = '';
     }
   });
 }

@@ -9,7 +9,6 @@
 body {
   background: none;
   font-family: 'Permanent Marker', cursive;
-
 }
 
 .navbar.navbar-inverse {
@@ -145,7 +144,6 @@ body {
   width: 80%;
   margin: auto;
   margin-bottom: 5%;
-  /*text-align: center;*/
 }
 
 .social {
@@ -153,30 +151,6 @@ body {
   margin-top: 5%;
   text-align: center;
 }
-
-/*#twitter {
-  width: 40%;
-  margin: auto;
-  margin: 5%;
-  float: left;
-}
-
-#facebook {
-  width: 40%;
-  height: auto;
-  margin: auto;
-  margin: 5%;
-  float: right;
-}
-
-#youtube {
-  width: 40%;
-  float: right;
-  margin-top: 5%;
-  margin-right: 7%;
-  margin-left: 0;
-  margin-bottom: 0;
-}*/
 
 /* Nonsense */
 
@@ -187,20 +161,20 @@ body {
   max-width: 60%;
 
   transform: rotate(3deg);
-  -webkit-animation: movewingp 8s infinite;
-  -o-animation: movewingp 8s infinite;
-  animation: movewingp 8s infinite;
+  -webkit-animation: rocktheboat 8s infinite;
+  -o-animation: rocktheboat 8s infinite;
+  animation: rocktheboat 8s infinite;
   -webkit-animation-timing-function: linear;
   -o-animation-timing-function: linear;
   animation-timing-function: linear;
 }
 
-@-webkit-keyframes movewingp {
+@-webkit-keyframes rocktheboat {
   50% { transform: rotate(-5deg); }
   53% { transform: rotate(-5deg); }
   56% { transform: rotate(-5deg); }
 }
-@keyframes movewingp {
+@keyframes rocktheboat {
   50% { transform: rotate(-5deg); }
   53% { transform: rotate(-5deg); }
   56% { transform: rotate(-5deg); }
@@ -208,5 +182,8 @@ body {
 
 .laser {
   position: absolute;
-  width: 10%;
+  width: 15%;
+  top: 80%;
+  left: 60%;
+  z-index: -1;
 }
