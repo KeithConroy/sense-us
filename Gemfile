@@ -17,11 +17,8 @@ gem 'rake'
 
 gem 'shotgun'
 
-gem 'pry'
-gem 'pry-byebug'
 
 gem 'bcrypt'
-gem 'rspec'
 
 group :test do
   gem 'shoulda-matchers'
@@ -31,4 +28,7 @@ end
 group :test, :development do
   gem 'factory_girl'
   gem 'faker'
+  gem 'rspec'
+  gem 'pry'
+  gem 'pry-byebug'
 end
