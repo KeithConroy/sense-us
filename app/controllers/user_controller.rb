@@ -11,7 +11,6 @@ post '/session' do
   if @user && @user.password == params[:password]
     log_in(@user)
     redirect '/'
-    # erb :profile
   else
     status 401
     @login_error = "The username or password you entered is incorrect"

@@ -18,15 +18,15 @@ function generateMap() {
     showTooltip: true,
     onRegionClick: function(element, abbrv, region)
     {
-        $('#results h3').remove();
-        $('#results p').remove();
-      // if(abbrv === 'ia'){
-      //   getAwesome();
-      // }
-      // else {
+      $('#results h3').remove();
+      $('#results p').remove();
+      if(abbrv === 'ia'){
+        getAwesome();
+      }
+      else {
         var stateCode = codes[abbrv.toUpperCase()];
         apiEstimatesCall(stateCode);
-      // }
+      }
     }
   });
 }

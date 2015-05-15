@@ -1,0 +1,7 @@
+Estimate.create(date: 'April 1, 2010 Census Population')
+Estimate.create(date: 'April 1, 2010 population estimates base')
+Estimate.create(date: 'July 1, 2010 population estimate')
+Estimate.create(date: 'July 1, 2011 population estimate')
+Estimate.create(date: 'July 1, 2012 population estimate')
+Estimate.create(date: 'July 1, 2013 population estimate')
+Estimate.create(date: 'July 1, 2014 population estimate')

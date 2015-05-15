@@ -1,11 +1,10 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  has_many :todos
+  has_many :results
 
-  validates_presence_of :user_name
+  validates_presence_of :user_name, :password_hash
   validates_uniqueness_of :user_name
-  validates_presence_of :password_hash, :message => 'Password cannot be blank'
 
   def password
     @password ||= BCrypt::Password.new(password_hash) if password_hash

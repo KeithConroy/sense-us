@@ -8,6 +8,8 @@
 
 body {
   background: none;
+  font-family: 'Permanent Marker', cursive;
+
 }
 
 .navbar.navbar-inverse {
@@ -54,6 +56,10 @@ body {
   margin: auto;
 }
 
+.panel-heading {
+  font-family: 'Permanent Marker', cursive;
+}
+
 /* Profile */
 
 #toggle {
@@ -93,6 +99,10 @@ body {
   z-index: 1;
 }
 
+#save {
+  top: 90%;
+}
+
 #chart {
   display: none;
   width: 60%;
@@ -100,10 +110,53 @@ body {
   margin-top: 5%;
 }
 
-/* Twitter */
+/* Saved */
 
-#twitter {
+#saved {
+  width: 80%;
+  margin: auto;
+  margin-top: 3%;
+}
+
+.saved-result {
+  height: 300px;
+  text-align: center;
+  padding: 0;
+  margin-bottom: 5%;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+#page-flip {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2em;
+}
+
+#page-flip a {
+  text-decoration: none;
+}
+
+/* Social */
+
+#social-group {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 5%;
+  /*text-align: center;*/
+}
+
+.social {
+  margin: auto;
+  margin-top: 5%;
+  text-align: center;
+}
+
+/*#twitter {
   width: 40%;
+  margin: auto;
   margin: 5%;
   float: left;
 }
@@ -111,6 +164,7 @@ body {
 #facebook {
   width: 40%;
   height: auto;
+  margin: auto;
   margin: 5%;
   float: right;
 }
@@ -122,7 +176,7 @@ body {
   margin-right: 7%;
   margin-left: 0;
   margin-bottom: 0;
-}
+}*/
 
 /* Nonsense */
 

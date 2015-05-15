@@ -2,18 +2,21 @@ $(document).ready(function() {
   bindEvents();
   generateMap();
   prepareChart();
+  $('#awesome').hide();
 });
 
 function bindEvents() {
   $('#toggle').on("click", toggleView);
   $('#get_results').on("click", apiProjectionsCall);
+  $('#save').on("click", saveResults);
+  $('#saved').on("click", "#delete", deleteResult);
 }
 
 function toggleView() {
+  event.preventDefault();
   $('#estimates').toggleClass('hidden');
   $('#projections').toggleClass('hidden');
 
-  $(this).toggleClass('btn-success');
   $(this).text(function(i, text){
     return text === "Switch to Projections" ? "Switch to Estimates" : "Switch to Projections";
   })
@@ -37,11 +40,12 @@ function apiEstimatesCall(state) {
       url: 'http://api.census.gov/data/2013/pep/natstprc?get='+options+'&for=state:'+state+'&DATE='+date+'&key='+key(),
       type: 'GET',
       success: function(stateInfo) {
+        $('#save').html("Save");
         for (i = 0; i < (stateInfo[0].length - 2); i++) {
           if(stateInfo[0][i] === 'STNAME')
             $('#results').append('<h3>'+stateInfo[1][i]+'</h3>');
           else
-            $('#results').append('<p>'+stateInfo[0][i]+' '+stateInfo[1][i]+'</p>');
+            $('#results').append('<p>'+stateInfo[0][i]+': '+stateInfo[1][i]+'</p>');
         }
       }
     });
@@ -104,6 +108,68 @@ function checkYear() {
 function checkParams() {
   return $("#params_selector").find(':selected').val();
 };
+
+// Save
+
+function saveResults(){
+  event.preventDefault();
+
+  if (checkOptions().length <= 6 || checkDate() === '0'){
+    $('#results').append('<h3 style="color: red;">Please make your selections above</h3>');
+  }
+  else{
+    var button = $(this);
+    $.ajax({
+      url: '/save',
+      type: 'POST',
+      data: parseSave(),
+      success: function(){
+        button.html('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>')
+      }
+    });
+  }
+}
+
+function parseSave(){
+  var data = {
+    state: $('#results').find('h3').text(),
+    date: checkDate(),
+    births: null,
+    deaths: null,
+    pop: null,
+  }
+
+  var text = [];
+  $('#results p').each(function(){
+    text.push($(this).text().split(' '));
+  });
+
+  for (var i = 0; i < text.length; i++) {
+    if(text[i][0] == "POP:")
+      data.pop = text[i][1];
+    else if(text[i][0] == "BIRTHS:")
+      data.births = text[i][1];
+    else if(text[i][0] == "DEATHS:")
+      data.deaths = text[i][1];
+  };
+  return data;
+}
+
+function deleteResult(){
+  event.preventDefault();
+
+  var button = $(this)
+  var url = $(this).attr('href');
+
+  $.ajax({
+    url: url,
+    type: 'DELETE',
+
+    success: function(){
+      button.closest('.saved-result').remove();
+    }
+  });
+}
 
 // Display Helpers
 

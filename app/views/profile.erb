@@ -11,13 +11,18 @@
       <li><a href="/logout">Log Out</a></li>
     </ul>
     <p class="navbar-text navbar-right">
-      Signed in as <%= current_user.user_name %>
-      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+      Signed in as
+      <a href="/saved">
+        <%= current_user.user_name %>
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+      </a>
     </p>
   </div><!-- /.container-fluid -->
 </nav>
 
-<button id="toggle"class="btn btn-default">Switch to Projections</button>
+<div id="page-flip">
+  <a id="toggle" href="#">Switch to Projections</a>
+</div>
 
 <!-- Estimates Page -->
 
@@ -34,12 +39,19 @@
   </div>
 
   <div id="results" class="panel panel-default">
-    <div class="panel-heading">
-      <h2 class="panel-title">Results</h2>
+    <div class="panel-heading clearfix">
+      <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Results</h4>
+      <div class="btn-group pull-right">
+        <a id="save" href="/save" class="btn btn-success btn-sm">Save</a>
+      </div>
     </div>
+
+    <!-- <div class="panel-heading">
+      <h2 class="panel-title">Results</h2>
+      <button id="save" class="btn btn-default pull-right">Save</button>
+    </div> -->
     <div class="panel-body">
       <p></p>
-      <button id="save"class="btn btn-default">Save Results</button>
     </div>
   </div>
 
