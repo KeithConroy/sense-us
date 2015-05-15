@@ -16,7 +16,7 @@ gem 'activerecord'
 gem 'rake'
 
 gem 'shotgun'
-
+gem 'rspec'
 
 gem 'bcrypt'
 
@@ -28,7 +28,6 @@ end
 group :test, :development do
   gem 'factory_girl'
   gem 'faker'
-  gem 'rspec'
   gem 'pry'
   gem 'pry-byebug'
 end
