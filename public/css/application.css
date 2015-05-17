@@ -23,7 +23,7 @@ body {
 
 /* Index */
 
-#login_error {
+.login_alert {
   width: 50%;
   margin: auto;
   text-align: center;

@@ -28,9 +28,16 @@
 </nav>
 
 <% if @login_error %>
-  <div id="login_error" class="alert alert-danger" role="alert">
+  <div class="login_alert alert alert-danger" role="alert">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
     <%= @login_error %>
+  </div>
+<% end %>
+
+<% if @new_user %>
+  <div class="login_alert alert alert-success" role="alert">
+    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    Thanks for signing up <em><%= @new_user %></em>, please log in.
   </div>
 <% end %>
 
@@ -54,12 +61,6 @@
       <% end %>
     <% end %>
 
-    <% if @new_user %>
-        <div class="alert alert-success" role="alert">
-          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-          Thanks for signing up <em><%= @new_user %></em>, please log in.
-        </div>
-    <% end %>
 
     <form action="/users" method="post">
       <div id="sign_up_form" class="form-group">

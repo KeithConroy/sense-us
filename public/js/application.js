@@ -45,7 +45,7 @@ function apiEstimatesCall(state) {
           if(stateInfo[0][i] === 'STNAME')
             $('#results').append('<h3>'+stateInfo[1][i]+'</h3>');
           else
-            $('#results').append('<p>'+stateInfo[0][i]+': '+stateInfo[1][i]+'</p>');
+            $('#results').append('<p>'+stateInfo[0][i]+': '+numberWithCommas(stateInfo[1][i])+'</p>');
         }
       }
     });
@@ -108,6 +108,10 @@ function checkYear() {
 function checkParams() {
   return $("#params_selector").find(':selected').val();
 };
+
+function numberWithCommas(num) {
+  return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 // Save
 
