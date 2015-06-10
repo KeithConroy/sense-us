@@ -1,0 +1,49 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/social">
+        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+      </a>
+      <a class="navbar-brand" href="/social">Sense Us</a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout">Log Out</a></li>
+    </ul>
+    <p class="navbar-text navbar-right">
+      Signed in as <%= current_user.user_name %>
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+    </p>
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div id="page-flip">
+  <a id="back" href="javascript:history.back()">Back to Search</a>
+</div>
+
+<div id="saved">
+  <% @results.each_with_index do |result, i| %>
+    <div class="panel panel-default saved-result col-md-3">
+      <div class="panel-heading clearfix">
+        <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><%= result.state %></h4>
+        <div class="btn-group pull-right">
+          <a id="delete" href="/delete/<%= result.id %>" class="btn btn-danger btn-sm">Delete</a>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <p>Date: <%= @dates[i].date %></p>
+        <% if result.pop != '' %>
+          <p>Population: <%= result.pop %></p>
+        <% end %>
+        <% if result.births != '' %>
+          <p>Births: <%= result.births %></p>
+        <% end %>
+        <% if result.deaths != '' %>
+          <p>Deaths: <%= result.deaths %></p>
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+</div>

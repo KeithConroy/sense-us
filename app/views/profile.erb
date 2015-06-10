@@ -1,0 +1,75 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/social">
+        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+      </a>
+      <a class="navbar-brand" href="/social">Sense Us</a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout">Log Out</a></li>
+    </ul>
+    <p class="navbar-text navbar-right">
+      Signed in as
+      <a href="/saved">
+        <%= current_user.user_name %>
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+<div id="page-flip">
+  <a id="toggle" href="#">Switch to Projections</a>
+</div>
+
+<!-- Estimates Page -->
+
+<div id="estimates">
+  <div id="toolbar" class="toolbar panel panel-default">
+    <div class="panel-body">
+      <%= erb :"/partials/_date_dropdown" %>
+      <form id="checkbox">
+        <input type="checkbox" id="population" value="POP"> Population
+        <input type="checkbox" id="births" value="BIRTHS"> Births
+        <input type="checkbox" id="deaths" value="DEATHS"> Deaths
+      </form>
+    </div>
+  </div>
+
+  <div id="results" class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Results</h4>
+      <div class="btn-group pull-right">
+        <a id="save" href="/save" class="btn btn-success btn-sm">Save</a>
+      </div>
+    </div>
+    <div class="panel-body">
+      <p></p>
+    </div>
+  </div>
+
+  <div id="vmap"></div>
+
+</div>
+
+<!-- Projections Page -->
+
+<div id="projections" class="hidden">
+  <div class="toolbar panel panel-default">
+    <div class="panel-body">
+      <%= erb :"/partials/_year_dropdown" %>
+      <%= erb :"/partials/_params_dropdown" %>
+      <button id="get_results" class="btn btn-default">Get Results</button>
+    </div>
+  </div>
+
+  <div id="chart">
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+  </div>
+</div>
+
+<!-- Nonsense Page -->
+
+<img id="awesome" alt="ship" src="/images/ship_with_pirate.png">

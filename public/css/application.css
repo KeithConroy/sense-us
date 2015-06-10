@@ -1,0 +1,189 @@
+.full {
+  background: url('/images/blue2.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+  background: none;
+  font-family: 'Permanent Marker', cursive;
+}
+
+.navbar.navbar-inverse {
+  margin: 0;
+  border-radius: 0;
+}
+
+.navbar-brand {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2em;
+}
+
+/* Index */
+
+.login_alert {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+#welcome {
+  text-align: center;
+  font-family: 'Permanent Marker', cursive;
+  color: white;
+  margin-top: 5%;
+}
+
+#welcome p {
+  font-size: 2em;
+}
+
+#welcome h1 {
+  font-size: 5em;
+}
+
+#sign-up {
+  width: 50%;
+  margin: auto;
+  margin-top: 5%;
+}
+
+#sign-up form {
+  width: 50%;
+  margin: auto;
+}
+
+.panel-heading {
+  font-family: 'Permanent Marker', cursive;
+}
+
+/* Profile */
+
+#toggle {
+  float: right;
+  margin-top: 50px;
+  margin-right: 5%;
+}
+
+#hidden {
+  display: none;
+}
+
+.toolbar {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  margin-top: 30px;
+}
+
+#vmap {
+  position: absolute;
+  width: 900px;
+  height: 500px;
+  margin-left: 5%;
+  margin-bottom: auto;
+  margin-top: 3%;
+}
+
+#results {
+  position: absolute;
+  height: 300px;
+  width: 25%;
+  margin-top: 5%;
+  top: 30%;
+  left: 70%;
+  text-align: center;
+  z-index: 1;
+}
+
+#save {
+  top: 90%;
+}
+
+#chart {
+  display: none;
+  width: 60%;
+  margin: auto;
+  margin-top: 5%;
+}
+
+/* Saved */
+
+#saved {
+  width: 80%;
+  margin: auto;
+  margin-top: 3%;
+}
+
+.saved-result {
+  height: 300px;
+  text-align: center;
+  padding: 0;
+  margin-bottom: 5%;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+#page-flip {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2em;
+}
+
+#page-flip a {
+  text-decoration: none;
+}
+
+/* Social */
+
+#social-group {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 5%;
+}
+
+.social {
+  margin: auto;
+  margin-top: 5%;
+  text-align: center;
+}
+
+/* Nonsense */
+
+#awesome {
+  position: absolute;
+  top: 10%;
+  left: 100%;
+  max-width: 60%;
+
+  transform: rotate(3deg);
+  -webkit-animation: rocktheboat 8s infinite;
+  -o-animation: rocktheboat 8s infinite;
+  animation: rocktheboat 8s infinite;
+  -webkit-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+@-webkit-keyframes rocktheboat {
+  50% { transform: rotate(-5deg); }
+  53% { transform: rotate(-5deg); }
+  56% { transform: rotate(-5deg); }
+}
+@keyframes rocktheboat {
+  50% { transform: rotate(-5deg); }
+  53% { transform: rotate(-5deg); }
+  56% { transform: rotate(-5deg); }
+}
+
+.laser {
+  position: absolute;
+  width: 15%;
+  top: 80%;
+  left: 60%;
+  z-index: -1;
+}
