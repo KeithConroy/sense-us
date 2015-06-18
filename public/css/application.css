@@ -8,7 +8,7 @@
 
 body {
   background: none;
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Francois One', sans-serif;
 }
 
 .navbar.navbar-inverse {
@@ -17,7 +17,7 @@ body {
 }
 
 .navbar-brand {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Francois One', sans-serif;
   font-size: 2em;
 }
 
@@ -31,7 +31,7 @@ body {
 
 #welcome {
   text-align: center;
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Francois One', sans-serif;
   color: white;
   margin-top: 5%;
 }
@@ -56,7 +56,7 @@ body {
 }
 
 .panel-heading {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Francois One', sans-serif;
 }
 
 /* Profile */
@@ -130,7 +130,7 @@ body {
   width: 50%;
   margin: auto;
   text-align: center;
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Francois One', sans-serif;
   font-size: 2em;
 }
 
